@@ -75,6 +75,9 @@ app.io.sockets.on('connection', function(socket){
 		app.io.sockets.to(roomName).emit('wakeup');
 	});
 	
+	socket.on('editIsread', function(){
+		conn.query("update tbl_chat set isread='y' where roomname=? and writer <> ? and isread='n'",[roomName, uid]);
+	});
 	
 });
 
