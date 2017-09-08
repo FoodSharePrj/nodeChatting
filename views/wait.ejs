@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf8" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	var socket = io.connect();
+
+	//변수를 선언합니다.
+	var roomname = "<%=roomname%>";
+	var uid = "<%=uid%>";
+	
+	socket.emit('wait', roomname);
+
+	//상대방 메시지발생 대기
+	socket.on('wakeup', function() {
+		
+		window.parent.postMessage(roomname, "*");
+	});
+</script>
+</head>
+<body>
+	<p>wait페이지</p>
+</body>
+</html>

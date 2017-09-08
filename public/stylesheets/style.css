@@ -1,0 +1,57 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgotic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+p.italic {
+    font-style: italic;
+    font-size: 25px;
+    text-align: center;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header {
+	  height:70px;
+    background-color:#A0C0D7;
+    border-style: none none solid none;
+    border-width: 1px;
+}
+
+.footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:70px;   
+    background-color:#FFFFFF;
+    border-style: none;
+}
+
+.button {
+  background-color:#FFEC42;
+}
+
+.spandiv{border-style: none; word-wrap: break-word;}
+
+.ptag{ font-family: 'Jeju Hallasan', serif;}
+
+.header{text-align:center;font-size: 30px; color: #FFFFFF; text-align:center;}
+
+.sendbutton{font-family: 'Noto Sans KR', sans-serif;}
+
+.media-heading{font-size: 15px;}
+.contentfont{font-size: 15px;}
+.regtimefont{font-size: 10px;}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8" />
+	<title>채팅</title>
+	<link rel="icon" type="image/x-icon" href="images/favicon_chat.ico">
+	<link href="stylesheets/style.css" rel="stylesheet"/>
+	<link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		$(document).ready(function(){
+			//변수를 선언합니다.
+			var room = "<%=roomname%>";
+			var uid = "<%=uid%>";
+			
+			var socket = io.connect();
+			
+			socket.emit('join',{roomName:room, uid:uid});
+			
+			//이전 데이터 호출
+			socket.on('getBeforeData',function(data){
+				console.log(data);
+			
+				for(var i=0;i<data.length;i++){
+					
+					var output = '';
+					if(data[i].writer!=uid){
+						output +='<div class="media" id="talk" style="margin:10px 30px 10px 10px; padding:10px;background-color:#FFFFFF; border-radius:15px">';
+						output +='<a class="pull-left" href="#">';
+						output +='<img class="media-object" src="images/carrot.png" width="30px" height="40px"/>';
+						output +='</a>';
+						output +='<div class="media-body">';
+						output +='<h4 class="media-heading"><strong>'+data[i].writer+'</strong></h4>';
+						output +='<span class="contentfont">'+data[i].content+'</span>';
+						output +='<span class="regtimefont">'+data[i].regtime+'</span>';
+						output +='</div>';
+						output +='</div>';
+					}else{
+						output +='<div class="media" id="talk" style="margin:10px 10px 10px 30px; padding:10px;background-color:#FFEC42; border-radius:15px">';
+						output +='<div class="media-body" style="padding-right:10px;">';
+						output +='<span class="contentfont pull-right">'+data[i].content+'</span>';
+						output +='<span class="regtimefont pull-right" style="padding-top:10px;">'+data[i].regtime+'</span>';
+						output +='</div>';
+						output +='</div>';
+					}		
+					//문서 객체를 추가합니다.
+					$(output).appendTo('#spandiv');
+				}
+				$("#chatdiv").scrollTop($("#chatdiv")[0].scrollHeight);
+			});
+
+			//이벤트를 연결합니다.
+			socket.on('propaganda',function(data){
+				
+				var output = '';
+				if(data.writer!=uid){
+					output +='<div class="media" id="talk" style="margin:10px 30px 10px 10px; padding:10px;background-color:#FFFFFF; border-radius:15px">';
+					output +='<a class="pull-left" href="#">';
+					output +='<img class="media-object" src="images/carrot.png" width="30px" height="40px"/>';
+					output +='</a>';
+					output +='<div class="media-body">';
+					output +='<h4 class="media-heading"><strong>'+data.writer+'</strong></h4>';
+					output +='<span class="contentfont">'+data.content+'</span>';
+					output +='<span class="regtimefont">'+data.regtime+'</span>';
+					output +='</div>';
+					output +='</div>';
+				}else{
+					output +='<div class="media" id="talk" style="margin:10px 10px 10px 30px; padding:10px;background-color:#FFEC42; border-radius:15px">';
+					output +='<div class="media-body" style="padding-right:10px;">';
+					output +='<span class="contentfont pull-right">'+data.content+'</span>';
+					output +='<span class="regtimefont pull-right" style="padding-top:10px;">'+data.regtime+'</span>';
+					output +='</div>';
+					output +='</div>';
+				}	
+				//문서 객체를 추가합니다.
+				$(output).appendTo('#spandiv');
+				$("#chatdiv").scrollTop($("#chatdiv")[0].scrollHeight);
+			});
+
+			$("#textareadiv").keyup(function (e) {
+       			
+       			if (e.which == 13){
+       				$('button').trigger("click");
+      			}
+  			});
+				 
+		  	//버튼을 클릭할때 
+			$('button').click(function(){
+				var d = new Date();
+				var times = d.getHours()+"시"+d.getMinutes()+"분";
+				var content = $('#textareadiv').val();
+				if(new String(content).trim() =='' || content == null){
+					return;
+				}
+				socket.emit('message',{
+						content: content,
+						regtime: times,
+						writer: uid,
+						roomname: room
+					});
+				$('#textareadiv').val('');
+				$('#textareadiv').autofocus();
+				$("#chatdiv").scrollTop($("#chatdiv")[0].scrollHeight);
+			});
+		});
+	</script>	
+</head>
+<body style="padding:0px;margin:0px;width:100%;height:100%; "
+		onresize="resizeTo(400,600)" onload="resizeTo(400,600) background-color:#9BB156;">
+	
+	<div style="border: 1px solid black; background-color:#A0C0D7;" 
+		style="margin-left:auto; margin-right:auto;" >
+
+<<<<<<< HEAD
+		<div style="position:solid; background-color:#9bb156; border-color:#000000; " class="header">
+			<div style="padding-top: 10px;">
+				<p class="ptag">Food Share</p>	
+=======
+		<div style="position:solid; border-color:#000000; background-color:#9BB156; " class="header">
+			<div style="padding-top: 10px; ">
+				<p class="ptag">Food Share</p>
+>>>>>>> f5f9f4bcfb7b128387a9ccc8f2733cb5cae4c80c
+			</div>
+		</div>
+
+		<div id="chatdiv" style="overflow:auto; 
+<<<<<<< HEAD
+			background-color:#9bb156; height: 392px;">
+=======
+			background-color:#9BB156; height: 392px;">
+>>>>>>> f5f9f4bcfb7b128387a9ccc8f2733cb5cae4c80c
+			<span id="spandiv" class="spandiv" 
+				style="word-break:break-all;word-wrap:break-word;"/>
+		</div>
+
+		<div style="position:solid; width: 380px;" class="footer">
+			<div>
+				<textarea id="textareadiv" class="textareadiv" style=" float: left; width : 80%; height:70px;" autofocus></textarea>
+			</div>
+			<div>
+				<button id="button" 
+					class="btn btn-success sendbutton" style=" float: left; width: 20%;">
+					전&nbsp;&nbsp;&nbsp;송
+				</button>
+			</div>
+	</div> 
+</body>
+</html>
