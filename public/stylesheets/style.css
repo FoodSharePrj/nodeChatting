@@ -1,6 +1,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgotic.css);
 @import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 
 body {
   padding: 50px;
@@ -47,6 +48,7 @@ p.italic {
 .spandiv{border-style: none; word-wrap: break-word;}
 
 .ptag{ font-family: 'Jeju Hallasan', serif;}
+.hannafont{ font-family: 'Jeju Gothic', serif;}
 
 .header{text-align:center;font-size: 30px; color: #FFFFFF; text-align:center;}
 
@@ -55,3 +57,24 @@ p.italic {
 .media-heading{font-size: 15px;}
 .contentfont{font-size: 15px;}
 .regtimefont{font-size: 10px;}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+
+
+
+
+
+
